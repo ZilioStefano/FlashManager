@@ -5,6 +5,7 @@ import pandas as pd
 from PIL import Image
 from django.shortcuts import render
 from graphicalUtilities import image_to_base64
+import webbrowser
 
 
 class RepeatTimer(Timer):
@@ -18,9 +19,11 @@ timer = RepeatTimer(15, check_modification_date, "")
 timer.start()  # recalling run
 print('Threading started')
 time.sleep(1)
-
+url = 'http://localhost:8000/'
+webbrowser.open(url)
 
 def main(request):
+
 
     template = "HP.html"
 
@@ -40,5 +43,6 @@ def main(request):
 
     # apro il file BancaleAperto
     dati_html = {'ListaBancali': bancale_html, "LogoIM": logo_im, "LogoRS": logo_rs, "BancaliSN": bancali_sn}
+
 
     return render(request, template, context=dati_html)
