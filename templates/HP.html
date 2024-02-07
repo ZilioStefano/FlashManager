@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="15">
+    <title>LabelManager</title>
+
+<style>
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: azure;
+}
+    </style>
+</head>
+
+<body style="background-color: floralwhite; align-content: center">
+<div><img src="data:image/png;base64,{{LogoIM}}" style="width: 10%; float: left" alt="">
+<img src="data:image/png;base64,{{LogoRS}}" style="width: 10%; float: right" alt = ""></div>
+<br>
+<div><h1 style="align-content: center">FLASH LABEL MANAGER</h1>
+</div>
+<br>
+<div>{{ ListaBancali | safe }}</div>
+<div style="background-color: lightgreen; align-content: center">
+    <br>
+            <form action="{%  url 'printBancale' %}" method="post" style="align-content: center">
+        {% csrf_token %}
+            <input type="submit" id="Ch0" value="Stampa riassuntivo bancale" name="Valore"></form>
+    <br>
+</div>
+<div style="background-color: lightgreen; align-content: center">
+</div>
+<div style="background-color: aqua">
+    <br>
+    Carica bancale:
+        <form action="{%  url 'caricaBancale' %}" method="post">
+            {% csrf_token %}
+            <input type="file" id="Upload" name="Scegli bancale" value="Carica bancale"/>
+            <input type="submit" id="Ch0" value="Carica bancale" name="Carica bancale"/>
+        </form>
+<br>
+</div>
+<div style="background-color: lightcoral">
+<br>
+    Rimuovi modulo dal bancale:
+<form action="{%  url 'EliminaModulo'%}" method="post">
+{% csrf_token %}
+<select id="playerselect" name="pitcher" class="player-dropdown">
+{% for option in BancaliSN %}
+    <option value="{{ option}}">{{ option }}</option>
+{% endfor %}
+<input type="submit" value="Rimuovi dal bancale"/>
+</select>
+</form>
+<br>
+</div>
+</body>
+</html>
